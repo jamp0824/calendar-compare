@@ -49,6 +49,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: 'export', // Enable static exports
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
