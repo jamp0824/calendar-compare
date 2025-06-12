@@ -98,8 +98,8 @@ const nextConfig: NextConfig = {
   },
   webpack: (config: WebpackConfig, { dev, isServer }: { dev: boolean; isServer: boolean }) => {
     // Custom webpack config here
-    if (!dev && !isServer) {
-      Object.assign(config.resolve!.alias, {
+    if (!dev && !isServer && config.resolve?.alias) {
+      Object.assign(config.resolve.alias, {
         'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
