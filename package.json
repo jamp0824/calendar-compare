@@ -2,6 +2,9 @@
   "name": "policy-match",
   "version": "0.1.0",
   "private": true,
+  "npmConfig": {
+    "legacy-peer-deps": true
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
