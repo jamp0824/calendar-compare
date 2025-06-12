@@ -112,7 +112,15 @@ class CalendarStore {
     const index = this.events.findIndex(event => event.id === id);
     if (index === -1) return false;
 
-    this.events[index] = { ...this.events[index], ...updates };
+    const existingEvent = this.events[index]!;
+    // Ensure all required fields are preserved
+    const updatedEvent: CalendarEvent = {
+      ...existingEvent,
+      ...updates,
+      id: existingEvent.id // Ensure id is never overwritten
+    };
+
+    this.events[index] = updatedEvent;
     this.saveToStorage();
     this.notify();
     return true;

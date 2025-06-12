@@ -12,7 +12,7 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 export default function ReactCalendarPage() {
   const { events, addEvent } = useCalendarStore();
   const [selectedDate, setSelectedDate] = useState<Value>(new Date());
-  const [calendarView, setCalendarView] = useState<'month' | 'year' | 'decade'>('month');
+  const [calendarView, setCalendarView] = useState<'month' | 'year' | 'decade' | 'century'>('month');
 
   const handleDateChange = (value: Value) => {
     setSelectedDate(value);
@@ -69,6 +69,7 @@ export default function ReactCalendarPage() {
     { view: 'month' as const, label: 'Month' },
     { view: 'year' as const, label: 'Year' },
     { view: 'decade' as const, label: 'Decade' },
+    { view: 'century' as const, label: 'Century' },
   ];
 
   const selectedDateEvents = selectedDate instanceof Date ? getEventsForDate(selectedDate) : [];
@@ -103,7 +104,7 @@ export default function ReactCalendarPage() {
               onChange={handleDateChange}
               value={selectedDate}
               view={calendarView}
-              onViewChange={setCalendarView}
+              onViewChange={({ view }) => setCalendarView(view)}
               tileContent={tileContent}
               tileClassName={tileClassName}
               className="w-full"
